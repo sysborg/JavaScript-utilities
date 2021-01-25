@@ -10,6 +10,7 @@
  *   tz_to_locale('2021-01-25 01:45:46', 'long'); // 25 de janeiro de 2021
  *   tz_to_locale('2021-01-25 01:45:46', 'medium'); // 25 de jan. de 2021
  *   tz_to_locale('2021-01-25 01:33:54', 'no-style', 'en-US'); // 1/25/2021, 1:33:54 AM
+ * @author  Anderson Matheus Arruda < anderson at sysborg dot com dot br >
  * @param   {String} required       Timestamp ISO8601
  * @param   {String} [optional]     Accept only ['no-style', 'short', 'medium', 'full', 'long']
  * @returns {String} [optional]     Accept only JavaScript locales like 'pt-BR, en-US, pt-PT and all others see javascript documentation'
