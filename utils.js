@@ -15,15 +15,20 @@
  * @returns {String} [optional]     Accept only JavaScript locales like 'pt-BR, en-US, pt-PT and all others see javascript documentation'
  */
 function tz_to_locale(tz, style='', locale='pt-BR'){
-    if(tz.length == 10 && /[0-9]{4}\-[0-9]{2}\-[0-9]{2}/g.test(tz)){
-        style = (style == '') ? 'short' : style;
-        return (style=='no-style') ? (new Date(tz+'T00:00:00')).toLocaleString(locale) : (new Date(tz+'T00:00:00')).toLocaleString(locale, {'dateStyle': style});
-    } else{
-        let istz = tz.match(/([0-9]{4}\-[0-9]{2}\-[0-9]{2}\s[0-9]{2}:[0-9]{2}:[0-9]{2})|([0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2})/g);
-        if(istz != null){
-            style = (style == '') ? 'no-style' : style;
-            return (style=='no-style') ? (new Date(istz)).toLocaleString(locale) : (new Date(istz)).toLocaleString(locale, {'dateStyle': style});
+    try{
+        if(tz.length == 10 && /[0-9]{4}\-[0-9]{2}\-[0-9]{2}/g.test(tz)){
+            style = (style == '') ? 'short' : style;
+            return (style=='no-style') ? (new Date(tz+'T00:00:00')).toLocaleString(locale) : (new Date(tz+'T00:00:00')).toLocaleString(locale, {'dateStyle': style});
+        } else{
+            let istz = tz.match(/([0-9]{4}\-[0-9]{2}\-[0-9]{2}\s[0-9]{2}:[0-9]{2}:[0-9]{2})|([0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2})/g);
+            if(istz != null){
+                style = (style == '') ? 'no-style' : style;
+                return (style=='no-style') ? (new Date(istz)).toLocaleString(locale) : (new Date(istz)).toLocaleString(locale, {'dateStyle': style});
+            }
         }
+    } catch(err){
+        console.log(err);
+        return tz;
     }
     
     return tz;
